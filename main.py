@@ -167,7 +167,8 @@ class Constructor:
         self.ypop = 140
         self.cpop = -574
         self.tpop = 0
-        self.anim_duration_pop = 500 # 1000
+        # self.anim_duration_pop = 500
+        self.anim_duration_pop = 300 # 1000
         self.anim_duration_pop_out = 300 # 400
         self.oldframe_pop = self.homepanel
 
@@ -371,6 +372,25 @@ class Constructor:
         t = t / d - 1
         return c * (t * t * t * t * t + 1) + b
 
+    # def get_x_elastic_out(self, t, b, c, d):
+    #     '''Ease Out Elastic
+    #     t - current time
+    #     b - beginning pos
+    #     c - change in value
+    #     d - duration
+    #     '''
+    #     a = c
+    #     p = d * 0.3
+    #     t = t / d
+    #     if t == 0:
+    #         return b
+    #     elif t == 1:
+    #         return b + c
+    #     else:
+    #         s = p / 4
+    #         result = a * math.pow(2, -10 * t) * math.sin((t * d - s) * (2 * math.pi) / p) * .5 + c + b
+    #         return result
+
     def get_x_elastic_out(self, t, b, c, d):
         '''Ease Out Elastic
         t - current time
@@ -378,17 +398,8 @@ class Constructor:
         c - change in value
         d - duration
         '''
-        a = c
-        p = d * 0.3
-        t = t / d
-        if t == 0:
-            return b
-        elif t == 1:
-            return b + c
-        else:
-            s = p / 4
-            result = a * math.pow(2, -10 * t) * math.sin((t * d - s) * (2 * math.pi) / p) * .5 + c + b
-            return result
+        t = t / d - 1
+        return c * (t * t * t * t * t + 1) + b
 
     def get_x_back_ease_in(self, t, b, c, d):
         s = 1.70158
