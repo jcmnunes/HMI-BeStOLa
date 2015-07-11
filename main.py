@@ -94,7 +94,7 @@ class Constructor:
         # Frame anim attrs
         self.y = self.height
         self.t = 0
-        self.anim_duration = 300
+        self.anim_duration = 500
         # Old Bounce anim
         # self.anim_duration = 1000
 
@@ -363,9 +363,13 @@ class Constructor:
     #         return c * (7.5625 * (t - (2.25 / 2.75)) * (t - (2.25 / 2.75)) + 0.9375) + b
     #     else:
     #         return c * (7.5625 * (t - (2.625 / 2.75)) * (t - (2.625 / 2.75)) + 0.984375) + b
+    # def get_y(self, t, b, c, d):
+    #     t = t / d
+    #     return c * t * t * t * t * t + b
+    # EasyQuintOut (https://github.com/jesusgollonet/ofpennereasing/tree/master/PennerEasing)
     def get_y(self, t, b, c, d):
-        t = t / d
-        return c * t * t * t * t * t + b
+        t = t / d - 1
+        return c * (t * t * t * t * t + 1) + b
 
     def get_x_elastic_out(self, t, b, c, d):
         '''Ease Out Elastic
